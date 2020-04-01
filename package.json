@@ -1,0 +1,24 @@
+{
+  "name": "hyperping-badge",
+  "version": "0.0.1",
+  "description": "Generate Hyperping Badges on the fly",
+  "main": "dist/main.js",
+  "entrypoint": "/dist/main.js",
+  "scripts": {
+    "build": "webpack index.js"
+  },
+  "keywords": [
+    "cloudflare-worker",
+    "gh-badges",
+    "hyperping"
+  ],
+  "author": "Nico Domino <yo@ndo.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "squirrelly": "^7.9.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
