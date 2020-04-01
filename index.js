@@ -1,3 +1,5 @@
+const { watch } = require("./utils/consolewatch");
+
 addEventListener("fetch", event => {
   event.respondWith(handleRequest(event.request));
 });
@@ -36,15 +38,19 @@ const generate = async request => {
 
   const url = new URL(request.url);
   const urlParams = new URLSearchParams(url.search);
-  const left = urlParams.get("left");
-  const right = urlParams.get("right");
-  let color = urlParams.get("color");
-  color = color.match(/^([0-9a-f]{6}|[0-9a-f]{3})/gi);
-  console.log("color2", color[0]);
+  let left = "one";
+  let right = "two";
+  let color = "67B246";
+  if (urlParams.toString().length !== 0) {
+    left = urlParams.get("left");
+    right = urlParams.get("right");
+    color = urlParams.get("color");
+    color = color.match(/^([0-9a-f]{6}|[0-9a-f]{3})/gi);
+  }
 
   badge = badge.replace(/LEFT/g, left);
   badge = badge.replace(/RIGHT/g, right);
-  badge = badge.replace(/COLOR/g, color[0]);
+  badge = badge.replace(/COLOR/g, color);
 
   return new Response(badge, {
     status: 200,
@@ -53,8 +59,9 @@ const generate = async request => {
 };
 
 async function handleRequest(request) {
+  watch(process.env.WATCH_ID || null);
+
   if (request.method === "GET") {
-    // response = new Response("Hello worker!", { status: 200 });
     response = await generate(request);
   } else {
     response = new Response("Expected GET", { status: 405 });

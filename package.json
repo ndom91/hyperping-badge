@@ -14,9 +14,7 @@
   ],
   "author": "Nico Domino <yo@ndo.dev>",
   "license": "MIT",
-  "dependencies": {
-    "squirrelly": "^7.9.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
