@@ -19,16 +19,16 @@ const generate = async request => {
       </g>
       <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="110"> 
       <text x="185" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="250">
-        [LEFT]
+        LEFT
       </text>
       <text x="185" y="140" transform="scale(.1)" textLength="250">
-        [LEFT]
+        LEFT
       </text>
       <text x="565" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="350">
-        {RIGHT}
+        RIGHT
       </text>
       <text x="565" y="140" transform="scale(.1)" textLength="350">
-        {RIGHT}
+        RIGHT
       </text>
       </g> 
     </svg>
@@ -43,9 +43,9 @@ const generate = async request => {
   const color = urlParams.get("color");
   console.log("color", color);
 
-  badge = badge.replace(/[LEFT]/g, left);
-  badge = badge.replace(/{RIGHT}/g, right);
-  badge = badge.replace(/{COLOR}/g, color);
+  badge = badge.replace(/LEFT/g, left);
+  badge = badge.replace(/RIGHT/g, right);
+  badge = badge.replace(/{COLOR}/, color);
 
   return new Response(badge, {
     status: 200,
