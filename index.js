@@ -14,7 +14,7 @@ const generate = async request => {
       </clipPath>
       <g clip-path="url(#a)">
         <path fill="#555" d="M0 0h35v20H0z"/>
-        <path fill="#007ec6" d="M35 0h45v20H35z"/>
+        <path fill="#COLOR" d="M35 0h45v20H35z"/>
         <path fill="url(#b)" d="M0 0h80v20H0z"/>
       </g>
       <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="110"> 
@@ -37,15 +37,14 @@ const generate = async request => {
   const url = new URL(request.url);
   const urlParams = new URLSearchParams(url.search);
   const left = urlParams.get("left");
-  console.log("left", left);
   const right = urlParams.get("right");
-  console.log("right", right);
-  const color = urlParams.get("color");
-  console.log("color", color);
+  let color = urlParams.get("color");
+  color = color.match(/^([0-9a-f]{6}|[0-9a-f]{3})/gi);
+  console.log("color2", color[0]);
 
   badge = badge.replace(/LEFT/g, left);
   badge = badge.replace(/RIGHT/g, right);
-  badge = badge.replace(/{COLOR}/, color);
+  badge = badge.replace(/COLOR/g, color[0]);
 
   return new Response(badge, {
     status: 200,
